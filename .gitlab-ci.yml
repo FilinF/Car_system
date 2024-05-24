@@ -25,3 +25,19 @@ run-e2e-tests:
         - gunicorn --workers=1 -b=0.0.0.0:8000 --chdir=./system_cars --daemon system_cars.wsgi:application
         - sleep 5
         - python -m pytest ./system_cars/Tests/e2e
+
+
+build-prod-image:
+    stage: build
+    image: docker:dind
+    script:
+        - docker build -f Dockerfile.prod -t system_cars:latest .
+        - docker save system_cars:latest > system_cars.tar
+    needs:
+        - run-unit-tests
+        - run-e2e-tests
+    artifacts:
+        when: on_success
+        expire_in: 10m
+        paths:
+            - "system_cars.tar"
