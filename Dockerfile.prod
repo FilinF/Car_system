@@ -1,0 +1,14 @@
+FROM python:3.12
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+RUN pip install gunicorn
+
+WORKDIR /app
+
+COPY ./system_cars .
+
+RUN mkdir -p applications/static/reports
+COPY ./entrypoint.sh .
+RUN chmod 777 ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]

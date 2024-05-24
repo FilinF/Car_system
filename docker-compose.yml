@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  back:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    ports:
+      - 8002:8000
+    volumes:
+      - ./.volumes/reports:/app/applications/static/reports
+    restart: always
+
+  proxy:
+    image: nginx
+    ports:
+      - 8003:8000
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/django.conf
+    restart: always
+    depends_on:
+      - back
