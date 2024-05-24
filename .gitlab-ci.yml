@@ -11,7 +11,7 @@ run-unit-tests:
         - |
             pip install pytest
             pip install -r ./requirements.txt
-        - python -m pytest .system_cars/Tests/unit
+        - python -m pytest ./system_cars/Tests/unit
 
 
 run-e2e-tests:
@@ -24,4 +24,4 @@ run-e2e-tests:
             pip install -r ./requirements.txt
         - gunicorn --workers=1 -b=0.0.0.0:8000 --chdir=./system_cars --daemon system_cars.wsgi:application
         - sleep 5
-        - python -m pytest .system_cars/Tests/e2e
+        - python -m pytest ./system_cars/Tests/e2e
