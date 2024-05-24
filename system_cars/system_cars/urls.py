@@ -30,7 +30,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('operations/create/', OperationsViewSet.as_view({'post': 'export_data'}), name='export-data'),
-    path('operations/tt/<uuid:operation_id>/', OperationsViewSet.as_view({'get': 'retrieve'}), name='get-operation'),
+    path('operations/new_oper/<uuid:operation_id>/', OperationsViewSet.as_view({'get': 'retrieve'}), name='get-operation'),
 
     path('car/', CarEntryViewSet.as_view({'post': 'create'}), name='create-route'),
     path('car/get_cars/', CarEntryViewSet.as_view({'get': 'get_cars'}), name='list-of-cars'),

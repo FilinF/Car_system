@@ -68,8 +68,8 @@ class CarEntryViewSet(ViewSet):
     def create(self, request):
         serializer = CreateRouteSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        tt = create_route(id = serializer.validated_data['id'], coordinate_x = serializer.validated_data['coordinate_x'] , coordinate_y = serializer.validated_data['coordinate_y'])
-        response_serializer = CreateRouteSerializer(tt)
+        new_oper = create_route(id = serializer.validated_data['id'], coordinate_x = serializer.validated_data['coordinate_x'] , coordinate_y = serializer.validated_data['coordinate_y'])
+        response_serializer = CreateRouteSerializer(new_oper)
         return Response(response_serializer.data,status=status.HTTP_201_CREATED)
 
 
