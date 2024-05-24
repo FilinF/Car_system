@@ -16,7 +16,7 @@ run-unit-tests:
 
 run-e2e-tests:
     stage: test
-    image: python:3.12
+    image: python:3.10
     script:
         - |
             pip install pytest
