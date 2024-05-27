@@ -53,7 +53,8 @@ def test_location_cars(car_id, car_coordinates):
     assert car_entry.status != CarEntryStatus.FINISH
 
 
-def test_notify(car_id, car_coordinates):
+def test_notify(ca
+    r_id, car_coordinates):
     create_route(car_id, *car_coordinates)
     notified_car_entry = notify(car_id)
 
